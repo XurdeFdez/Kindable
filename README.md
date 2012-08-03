@@ -7,10 +7,22 @@ In your Gemfile
 gem "kindable"
 ```
 Then run bundle:install
+## Usage
+First add the column with a migration, it must be integer type
+```ruby
+    add_column :table_name, :column_name, :integer
+``` 
+Then declare kind column and kinds in your model
+```ruby
+class ModelName < ActiveRecord::Base
+    kindable :column_name, {:key1 => value1, :key2 => value2...}
+end     
+```
+Thats all! 
 ## Example
 Use it to manage kinds on models
 ```ruby
-class User
+class User < ActiveRecord::Base
   attr_accessible :name, :role
   kindable :role, {:admin => 1, :guest => 0, :publisher => 2}
 end
