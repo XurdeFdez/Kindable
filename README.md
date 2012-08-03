@@ -1,11 +1,16 @@
 = Kindable
 Repo for Kindable gem: Manage 'kind columns' for ActiveRecord Models easily
+== Installation
+=== Rails 3
+In your Gemfile
+    gem "kindable"
+Then run bundle:install
 == Example
 Use it to manage kinds on models
- class User
-   attr_accessible :name, :role
-   kindable :role, {:admin => 1, :guest => 0, :publisher => 2}
- end
+    class User
+      attr_accessible :name, :role
+      kindable :role, {:admin => 1, :guest => 0, :publisher => 2}
+    end
  
 That code generates following constants:
     User::ROLE_ADMIN #=> 1
