@@ -34,6 +34,13 @@ User::ROLE_GUEST #=> 0
 User::ROLE_PUBLISHER #=> 2
 User::ROLES #=> {1 => :admin, 0 => :guest, 2 => :publisher}
 ```
+This scopes:
+```ruby
+User.from_role(xxxx) #=> users with role xxxx
+User.role_admin #=> users with role admin
+User.role_guest #=> users with role guest
+User.role_publisher #=> users with role publisher
+```
 And this methods:
 ```ruby
 User.roles_for_select # Array with I18n tag and value for each role to use it on select_tag or similar

@@ -14,6 +14,7 @@ module ActiveRecord
         @kinds = kinds
         kinds.each_pair do |name,value|
           class_eval <<-EOV
+            scope :#{column_name}_#{name}, lambda{from_#{column_name}(#{value})}
             #{@constant_prefix}_#{name.upcase} = #{value}
             def #{name}?
               self.#{column_name} == #{value}
@@ -21,6 +22,7 @@ module ActiveRecord
           EOV
         end
         class_eval <<-EOV
+          scope :from_#{column_name},  lambda{|k| where(:#{column_name} => k)}
           #{@constant_prefix.to_s.pluralize.upcase} = {#{kinds.keys.map{|name| "#{kinds[name]} => #{name.inspect}"}.join(",")}}
           def self.#{column_name.to_s.pluralize}_for_select(options={})
             values = []
