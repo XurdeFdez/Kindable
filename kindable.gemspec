@@ -12,8 +12,7 @@ Gem::Specification.new do |s|
   s.date = "2012-08-03"
   s.email = "xurde.fdez@gmail.com"
   s.extra_rdoc_files = [
-    "README.md",
-    "README.rdoc"
+    "README.md"
   ]
   s.files = [
     "lib/active_record/kindable.rb",
