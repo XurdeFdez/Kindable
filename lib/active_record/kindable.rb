@@ -22,7 +22,7 @@ module ActiveRecord
           EOV
         end
         class_eval <<-EOV
-          validates_inclusion_of :#{column_name}, :in => #{kinds.values}
+          validates_inclusion_of :#{column_name}, :in => #{kinds.values}, :if => lambda{|o| !o.#{column_name}.blank?}
           scope :from_#{column_name},  lambda{|k| where(:#{column_name} => k)}
           #{@constant_prefix.to_s.pluralize.upcase} = {#{kinds.keys.map{|name| "#{kinds[name]} => #{name.inspect}"}.join(",")}}
           def self.#{column_name.to_s.pluralize}_for_select(options={})
