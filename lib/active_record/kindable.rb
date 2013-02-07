@@ -1,12 +1,12 @@
 #Crea los scopes y las validaciones para cada source
 module ActiveRecord
   module Kindable
+    include ActiveSupport::Concern
+    
     @constant_prefix = nil
     @kinds = nil
     @column_name = nil
-    def self.included(base)
-      base.extend(ClassMethods)
-    end
+
     module ClassMethods
       def kindable(column_name, kinds={})
         @column_name = column_name
